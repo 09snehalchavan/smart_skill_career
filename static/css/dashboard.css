@@ -1,0 +1,736 @@
+/* =====================================================
+   SMART CAREER DASHBOARD
+===================================================== */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   WELCOME CARD
+===================================================== */
+
+.welcome-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 35px 40px;
+    margin-bottom: 40px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+
+    overflow: hidden;
+}
+
+
+.welcome-content {
+    max-width: 700px;
+}
+
+
+.welcome-badge {
+    display: inline-block;
+
+    padding: 6px 12px;
+    margin-bottom: 15px;
+
+    background: #eef2ff;
+    color: #4f46e5;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.welcome-card h1 {
+    margin: 0 0 12px;
+
+    color: #1e3a8a;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.welcome-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* Welcome Buttons */
+
+.welcome-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 25px;
+
+    flex-wrap: wrap;
+}
+
+
+.primary-btn,
+.secondary-btn,
+.action-btn {
+    display: inline-block;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.primary-btn {
+    padding: 11px 20px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.primary-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.20);
+}
+
+
+.secondary-btn {
+    padding: 11px 20px;
+
+    background: #ffffff;
+    color: #2563eb;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.secondary-btn:hover {
+    background: #eff6ff;
+
+    transform: translateY(-2px);
+}
+
+
+/* Welcome Icon */
+
+.welcome-icon {
+    width: 110px;
+    height: 110px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 30px;
+
+    background: #eff6ff;
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 50%;
+
+    font-size: 48px;
+}
+
+
+/* =====================================================
+   SECTION HEADING
+===================================================== */
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+
+.section-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #1e293b;
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   STATS GRID
+===================================================== */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 40px;
+}
+
+
+/* =====================================================
+   STAT CARD
+===================================================== */
+
+.stat-card {
+    min-height: 205px;
+
+    padding: 23px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+
+    transition: all 0.25s ease;
+
+    box-sizing: border-box;
+}
+
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.09);
+}
+
+
+/* =====================================================
+   STAT TOP
+===================================================== */
+
+.stat-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+
+.stat-icon.blue {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+
+.stat-icon.green {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+
+.stat-icon.orange {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+
+.stat-icon.purple {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+
+.stat-label {
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   STAT NUMBER
+===================================================== */
+
+.stat-number {
+    margin-bottom: 8px;
+
+    color: #1e3a8a;
+
+    font-size: 32px;
+
+    font-weight: 700;
+}
+
+
+.stat-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+.progress-container {
+    margin-top: 18px;
+}
+
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+
+    background: #2563eb;
+
+    border-radius: 20px;
+
+    transition: width 1s ease;
+}
+
+
+/* =====================================================
+   ACTION SECTION
+===================================================== */
+
+.action-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 40px;
+}
+
+
+.action-card {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+
+    transition: all 0.25s ease;
+}
+
+
+.action-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.09);
+}
+
+
+.action-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 11px;
+
+    font-size: 24px;
+}
+
+
+.action-content h3 {
+    margin: 0 0 8px;
+
+    color: #1e293b;
+
+    font-size: 18px;
+}
+
+
+.action-content p {
+    margin: 0 0 15px;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.action-btn {
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.action-btn:hover {
+    color: #1d4ed8;
+}
+
+
+/* =====================================================
+   CAREER GOAL
+===================================================== */
+
+.career-heading {
+    margin-top: 5px;
+}
+
+
+.career-goal-card {
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+
+    margin-bottom: 30px;
+}
+
+
+/* =====================================================
+   GOAL HEADER
+===================================================== */
+
+.goal-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+.goal-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 11px;
+
+    font-size: 24px;
+}
+
+
+.goal-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.goal-header h2 {
+    margin: 0;
+
+    color: #1e293b;
+
+    font-size: 22px;
+}
+
+
+/* =====================================================
+   GOAL DETAILS
+===================================================== */
+
+.goal-details {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 14px;
+
+    padding: 22px 0;
+}
+
+
+.goal-detail {
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+}
+
+
+.goal-detail span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+.goal-detail strong {
+    color: #1e293b;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   GOAL FOOTER
+===================================================== */
+
+.goal-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+
+.goal-footer p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   EMPTY GOAL
+===================================================== */
+
+.empty-goal {
+    text-align: center;
+
+    padding: 25px;
+}
+
+
+.empty-goal-icon {
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+
+.empty-goal h3 {
+    margin: 0 0 8px;
+
+    color: #1e293b;
+
+    font-size: 20px;
+}
+
+
+.empty-goal p {
+    max-width: 550px;
+
+    margin: 0 auto 20px;
+
+    color: #64748b;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .goal-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+    .dashboard-container {
+        padding: 20px 15px 40px;
+    }
+
+    .welcome-card {
+        padding: 25px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .welcome-icon {
+        display: none;
+    }
+
+    .welcome-card h1 {
+        font-size: 25px;
+    }
+
+    .welcome-actions {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .goal-details {
+        grid-template-columns: 1fr;
+    }
+
+    .goal-footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Add Skill - Smart Career
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/add_skill.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="add-skill-container">
+
+    <div class="add-skill-card">
+
+        <!-- Header -->
+
+        <div class="add-skill-header">
+
+            <div class="add-skill-icon">
+                💻
+            </div>
+
+            <div>
+                <span class="section-label">
+                    SKILL MANAGEMENT
+                </span>
+
+                <h1>
+                    Add Your Skill
+                </h1>
+
+                <p>
+                    Add your technical or professional skill
+                    to build your career profile.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Form -->
+
+        <form method="POST" class="skill-form">
+
+            {% csrf_token %}
+
+            <div class="form-fields">
+
+                {{ form.as_p }}
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="form-actions">
+
+                <a href="{% url 'my_skills' %}" class="cancel-btn">
+                    Cancel
+                </a>
+
+                <button type="submit" class="save-skill-btn">
+                    + Add Skill
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

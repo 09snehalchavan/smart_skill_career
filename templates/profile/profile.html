@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+My Profile - Smart Career
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <div class="profile-card">
+
+        <!-- Profile Photo -->
+        <div class="profile-photo-section">
+
+            {% if profile.profile_photo %}
+            <img src="{{ profile.profile_photo.url }}" alt="Profile Photo" class="profile-photo">
+            {% else %}
+            <div class="profile-photo-placeholder">
+                👤
+            </div>
+            {% endif %}
+
+            <h1>My Profile</h1>
+
+            <p>
+                Update your personal and educational information.
+            </p>
+
+        </div>
+
+
+        <!-- Profile Form -->
+        <form method="POST" enctype="multipart/form-data" class="profile-form" id="profileForm">
+
+            {% csrf_token %}
+
+            <div class="form-fields">
+                {{ form.as_p }}
+            </div>
+
+
+            <button type="submit" class="profile-btn" id="saveProfileBtn">
+
+                <span class="btn-text">
+                    💾 Save Profile
+                </span>
+
+                <span class="btn-loader">
+                    Saving...
+                </span>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

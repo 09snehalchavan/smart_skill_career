@@ -1,0 +1,441 @@
+/* =====================================================
+   SMART CAREER - LOGIN PAGE
+===================================================== */
+
+
+/* ===============================
+   LOGIN PAGE
+================================ */
+
+.login-page {
+    min-height: calc(100vh - 150px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px 15px;
+}
+
+
+/* ===============================
+   LOGIN CARD
+================================ */
+
+.login-card {
+    width: 100%;
+    max-width: 480px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    padding: 42px 40px;
+
+    border-radius: 24px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 20px 60px rgba(30, 27, 75, 0.13);
+
+    animation: loginCardAnimation 0.5s ease;
+}
+
+
+/* ===============================
+   LOGIN HEADER
+================================ */
+
+.login-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.login-icon {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    font-size: 32px;
+
+    box-shadow:
+        0 10px 25px rgba(99, 102, 241, 0.30);
+}
+
+
+.login-header h1 {
+    margin: 0 0 10px;
+
+    color: #1e1b4b;
+
+    font-size: 29px;
+
+    font-weight: 800;
+}
+
+
+.login-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ===============================
+   ERROR MESSAGE
+================================ */
+
+.login-error {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+    font-size: 13px;
+}
+
+
+.login-error > span {
+    font-size: 17px;
+}
+
+
+.login-error strong {
+    display: block;
+
+    margin-bottom: 3px;
+}
+
+
+.login-error p {
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+
+/* ===============================
+   FORM
+================================ */
+
+.login-form {
+    width: 100%;
+}
+
+
+.login-fields p {
+    margin: 0 0 18px;
+}
+
+
+.login-fields label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.login-fields input {
+    width: 100%;
+
+    min-height: 49px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    color: #334155;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+
+.login-fields input:hover {
+    border-color: #c7d2fe;
+}
+
+
+.login-fields input:focus {
+    background: #ffffff;
+
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.10);
+}
+
+
+/* ===============================
+   HELP TEXT
+================================ */
+
+.login-fields .helptext {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* ===============================
+   LOGIN BUTTON
+================================ */
+
+.login-btn {
+    width: 100%;
+
+    min-height: 53px;
+
+    margin-top: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(99, 102, 241, 0.25);
+
+    transition: all 0.25s ease;
+}
+
+
+.login-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 32px rgba(99, 102, 241, 0.35);
+}
+
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+
+.login-btn:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.75;
+
+    transform: none;
+}
+
+
+.btn-arrow {
+    font-size: 20px;
+
+    transition: transform 0.25s ease;
+}
+
+
+.login-btn:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+
+/* ===============================
+   FOOTER
+================================ */
+
+.login-footer {
+    margin-top: 25px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #eef2f7;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+.login-footer a {
+    margin-left: 5px;
+
+    color: #6366f1;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.login-footer a:hover {
+    color: #8b5cf6;
+
+    text-decoration: underline;
+}
+
+
+/* ===============================
+   ANIMATION
+================================ */
+
+@keyframes loginCardAnimation {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .login-page {
+        min-height: auto;
+
+        padding: 25px 10px;
+    }
+
+
+    .login-card {
+        padding: 30px 22px;
+
+        border-radius: 20px;
+    }
+
+
+    .login-icon {
+        width: 60px;
+        height: 60px;
+
+        font-size: 27px;
+
+        border-radius: 17px;
+    }
+
+
+    .login-header h1 {
+        font-size: 24px;
+    }
+
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+
+    .login-fields input {
+        min-height: 50px;
+
+        font-size: 16px;
+    }
+
+
+    .login-btn {
+        min-height: 51px;
+
+        font-size: 15px;
+    }
+
+
+    .login-footer {
+        font-size: 13px;
+    }
+
+}
+
+
+/* ===============================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 380px) {
+
+    .login-card {
+        padding: 25px 17px;
+    }
+
+
+    .login-header h1 {
+        font-size: 22px;
+    }
+
+}

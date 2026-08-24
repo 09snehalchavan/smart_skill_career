@@ -1,0 +1,431 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Dashboard - Smart Career
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <!-- =========================
+         Welcome Section
+    ========================== -->
+
+    <div class="welcome-card">
+
+        <div class="welcome-content">
+
+            <span class="welcome-badge">
+                🚀 Smart Career Dashboard
+            </span>
+
+            <h1>
+                Welcome, {{ profile.full_name }} 👋
+            </h1>
+
+            <p>
+                Manage your skills, track your progress and build
+                your career journey with Smart Career.
+            </p>
+
+            <div class="welcome-actions">
+
+                <a href="{% url 'profile' %}" class="primary-btn">
+                    👤 My Profile
+                </a>
+
+                <a href="{% url 'my_skills' %}" class="secondary-btn">
+                    💡 My Skills
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="welcome-icon">
+            🎯
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Career Progress
+    ========================== -->
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-label">
+                PERFORMANCE
+            </span>
+
+            <h2>
+                Your Career Progress
+            </h2>
+        </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <!-- Skill Match -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon blue">
+                    🎯
+                </div>
+
+                <span class="stat-label">
+                    Skill Match
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ match_percentage }}%
+            </div>
+
+            <p>
+                Your overall skill match with your target career.
+            </p>
+
+            <div class="progress-container">
+
+                <div class="progress-track">
+
+                    <div class="progress-fill" data-percentage="{{ match_percentage }}"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Matched Skills -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <span class="stat-label">
+                    Matched Skills
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ total_matched }}
+            </div>
+
+            <p>
+                Skills that match your selected career.
+            </p>
+
+        </div>
+
+
+        <!-- Missing Skills -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon orange">
+                    !
+                </div>
+
+                <span class="stat-label">
+                    Missing Skills
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ total_missing }}
+            </div>
+
+            <p>
+                Skills you need to improve.
+            </p>
+
+        </div>
+
+
+        <!-- Courses -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon purple">
+                    📚
+                </div>
+
+                <span class="stat-label">
+                    Recommended Courses
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ recommended_courses_count }}
+            </div>
+
+            <p>
+                Courses recommended for your skill gaps.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Quick Actions
+    ========================== -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                ACTIONS
+            </span>
+
+            <h2>
+                Continue Your Career Journey
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="action-grid">
+
+        <!-- Skill Gap -->
+
+        <div class="action-card">
+
+            <div class="action-icon">
+                📊
+            </div>
+
+            <div class="action-content">
+
+                <h3>
+                    Skill Gap Analysis
+                </h3>
+
+                <p>
+                    Find out which skills you need to develop
+                    for your target career.
+                </p>
+
+                <a href="{% url 'skill_gap' %}" class="action-btn">
+                    Analyze Skills →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- My Skills -->
+
+        <div class="action-card">
+
+            <div class="action-icon">
+                💡
+            </div>
+
+            <div class="action-content">
+
+                <h3>
+                    Manage My Skills
+                </h3>
+
+                <p>
+                    Add, update and manage your technical
+                    and professional skills.
+                </p>
+
+                <a href="{% url 'my_skills' %}" class="action-btn">
+                    Manage Skills →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Career Goal
+    ========================== -->
+
+    <div class="section-heading career-heading">
+
+        <div>
+
+            <span class="section-label">
+                CAREER PLAN
+            </span>
+
+            <h2>
+                Your Career Goal
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="career-goal-card">
+
+        {% if career_goal %}
+
+        <div class="goal-header">
+
+            <div class="goal-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <span class="goal-label">
+                    TARGET ROLE
+                </span>
+
+                <h2>
+                    {{ career_goal.target_role }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="goal-details">
+
+            <div class="goal-detail">
+
+                <span>
+                    Experience
+                </span>
+
+                <strong>
+                    {{ career_goal.experience_level }}
+                </strong>
+
+            </div>
+
+
+            <div class="goal-detail">
+
+                <span>
+                    Domain
+                </span>
+
+                <strong>
+                    {{ career_goal.preferred_domain }}
+                </strong>
+
+            </div>
+
+
+            <div class="goal-detail">
+
+                <span>
+                    Target Salary
+                </span>
+
+                <strong>
+                    ₹{{ career_goal.target_salary }}
+                </strong>
+
+            </div>
+
+
+            <div class="goal-detail">
+
+                <span>
+                    Timeline
+                </span>
+
+                <strong>
+                    {{ career_goal.target_timeline }} Months
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="goal-footer">
+
+            <p>
+                🎯 Keep working on your skills to reach your career goal.
+            </p>
+
+            <a href="{% url 'career_goal' %}" class="primary-btn">
+                Edit Career Goal
+            </a>
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty-goal">
+
+            <div class="empty-goal-icon">
+                🎯
+            </div>
+
+            <h3>
+                No Career Goal Set
+            </h3>
+
+            <p>
+                Set your target role, salary and timeline
+                to start tracking your career journey.
+            </p>
+
+            <a href="{% url 'career_goal' %}" class="primary-btn">
+                Set Career Goal →
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

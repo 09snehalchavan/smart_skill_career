@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Skill Gap Analysis - Smart Career
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h1>📊 Skill Gap Analysis</h1>
+
+    {% if career %}
+
+    <h2>{{ career.name }}</h2>
+
+    <hr>
+
+    <h3>📈 Skill Match</h3>
+
+    <p>
+        <strong>{{ total_matched }}</strong>
+        out of
+        <strong>{{ total_required }}</strong>
+        required skills matched.
+    </p>
+
+    <h2>{{ match_percentage }}%</h2>
+
+    <hr>
+
+    <h3>✅ Your Matching Skills</h3>
+
+    {% if matched_skills %}
+
+    <ul>
+        {% for skill in matched_skills %}
+        <li>
+            {{ skill.skill.name }}
+            — {{ skill.importance }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% else %}
+
+    <p>No matching skills found yet.</p>
+
+    {% endif %}
+
+    <hr>
+
+    <h3>⚠️ Skills You Need to Improve</h3>
+
+    {% if missing_skills %}
+
+    <ul>
+        {% for skill in missing_skills %}
+        <li>
+            {{ skill.skill.name }}
+            — {{ skill.importance }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% else %}
+
+    <p>🎉 Great! You have all required skills.</p>
+
+    {% endif %}
+
+    <hr>
+
+    <h3>📚 Recommended Learning</h3>
+
+    {% if recommended_courses %}
+
+    {% for course in recommended_courses %}
+
+    <div class="card">
+
+        <h3>📖 {{ course.name }}</h3>
+
+        <p>
+            <strong>Skill:</strong>
+            {{ course.skill.name }}
+        </p>
+
+        <p>
+            <strong>Platform:</strong>
+            {{ course.platform }}
+        </p>
+
+        <p>
+            <strong>Level:</strong>
+            {{ course.get_level_display }}
+        </p>
+
+        {% if course.duration %}
+        <p>
+            <strong>Duration:</strong>
+            {{ course.duration }}
+        </p>
+        {% endif %}
+
+        {% if course.description %}
+        <p>
+            {{ course.description }}
+        </p>
+        {% endif %}
+
+        {% if course.course_url %}
+        <a href="{{ course.course_url }}" target="_blank">
+            <button type="button">
+                Start Learning →
+            </button>
+        </a>
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+
+    <p>
+        No learning recommendations available for your missing skills yet.
+    </p>
+
+    {% endif %}
+
+    {% else %}
+
+    <p>
+        {{ error }}
+    </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

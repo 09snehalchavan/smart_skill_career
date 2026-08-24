@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+My Skills - Smart Career
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_skills.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="skills-container">
+
+    <!-- Header -->
+    <div class="skills-header">
+
+        <div>
+            <span class="section-label">
+                SKILL MANAGEMENT
+            </span>
+
+            <h1>
+                My Skills 💻
+            </h1>
+
+            <p>
+                Manage your technical and professional skills.
+            </p>
+        </div>
+
+        <a href="{% url 'add_skill' %}" class="add-skill-btn">
+            + Add Skill
+        </a>
+
+    </div>
+
+
+    <!-- Skills List -->
+
+    {% if user_skills %}
+
+    <div class="skills-grid">
+
+        {% for item in user_skills %}
+
+        <div class="skill-card">
+
+            <div class="skill-card-header">
+
+                <div class="skill-icon">
+                    💻
+                </div>
+
+                <div>
+                    <h3>
+                        {{ item.skill.name }}
+                    </h3>
+
+                    <span class="skill-level">
+                        {{ item.get_proficiency_display }}
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="skill-details">
+
+                <div class="skill-detail">
+
+                    <span>
+                        Experience
+                    </span>
+
+                    <strong>
+                        {{ item.years_of_experience }} years
+                    </strong>
+
+                </div>
+
+
+                <div class="skill-detail">
+
+                    <span>
+                        Self Rating
+                    </span>
+
+                    <strong>
+                        {{ item.self_rating }}/5
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Skill Rating -->
+
+            <div class="rating-section">
+
+                <div class="rating-header">
+
+                    <span>
+                        Skill Rating
+                    </span>
+
+                    <strong>
+                        {{ item.self_rating }}/5
+                    </strong>
+
+                </div>
+
+                <div class="rating-bar">
+
+                    <div class="rating-fill" data-rating="{{ item.self_rating }}">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="skill-actions">
+
+                <a href="{% url 'edit_skill' item.id %}" class="edit-btn">
+                    ✏️ Edit
+                </a>
+
+                <a href="{% url 'delete_skill' item.id %}" class="delete-btn">
+                    🗑️ Delete
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+    <!-- Empty State -->
+
+    <div class="empty-skills">
+
+        <div class="empty-icon">
+            💻
+        </div>
+
+        <h2>
+            No Skills Added Yet
+        </h2>
+
+        <p>
+            Start building your skill profile by adding
+            your technical or professional skills.
+        </p>
+
+        <a href="{% url 'add_skill' %}" class="add-skill-btn">
+            + Add Your First Skill
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/my_skills.js' %}"></script>
+{% endblock %}

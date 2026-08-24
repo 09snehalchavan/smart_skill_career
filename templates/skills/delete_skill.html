@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Delete Skill - Smart Career
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/delete_skill.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="delete-skill-container">
+
+    <div class="delete-skill-card">
+
+        <!-- Warning Icon -->
+
+        <div class="delete-icon">
+            ⚠️
+        </div>
+
+
+        <!-- Heading -->
+
+        <span class="section-label">
+            SKILL MANAGEMENT
+        </span>
+
+        <h1>
+            Delete Skill
+        </h1>
+
+        <p class="delete-message">
+            Are you sure you want to delete
+            <strong>{{ user_skill.skill.name }}</strong>?
+        </p>
+
+        <p class="warning-text">
+            This action cannot be undone.
+        </p>
+
+
+        <!-- Confirmation Form -->
+
+        <form method="POST" class="delete-form">
+
+            {% csrf_token %}
+
+            <button type="submit" class="delete-confirm-btn">
+                🗑️ Yes, Delete Skill
+            </button>
+
+            <a href="{% url 'my_skills' %}" class="cancel-delete-btn">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

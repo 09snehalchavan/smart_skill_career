@@ -1,0 +1,236 @@
+/* =========================================
+   DELETE SKILL
+========================================= */
+
+.delete-skill-container {
+    width: 100%;
+    max-width: 550px;
+
+    margin: 0 auto;
+
+    padding: 50px 20px 70px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.delete-skill-card {
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    padding: 40px 35px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================
+   WARNING ICON
+========================================= */
+
+.delete-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: #fff7ed;
+
+    border: 1px solid #fed7aa;
+
+    border-radius: 50%;
+
+    font-size: 30px;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.section-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #ea580c;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.delete-skill-card h1 {
+    margin: 0 0 18px;
+
+    color: #1e293b;
+
+    font-size: 27px;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.delete-message {
+    margin: 0 auto 10px;
+
+    color: #475569;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.delete-message strong {
+    color: #1e293b;
+}
+
+
+.warning-text {
+    margin: 0 0 28px;
+
+    color: #dc2626;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.delete-form {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+
+/* =========================================
+   DELETE BUTTON
+========================================= */
+
+.delete-confirm-btn {
+    padding: 11px 20px;
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.delete-confirm-btn:hover {
+    background: #b91c1c;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 12px rgba(220, 38, 38, 0.18);
+}
+
+
+/* =========================================
+   CANCEL BUTTON
+========================================= */
+
+.cancel-delete-btn {
+    display: inline-block;
+
+    padding: 11px 20px;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+.cancel-delete-btn:hover {
+    background: #f1f5f9;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .delete-skill-container {
+        padding: 30px 15px 50px;
+    }
+
+    .delete-skill-card {
+        padding: 30px 22px;
+    }
+
+    .delete-form {
+        flex-direction: column-reverse;
+    }
+
+    .delete-confirm-btn,
+    .cancel-delete-btn {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        text-align: center;
+    }
+
+}
