@@ -1,37 +1,92 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-Career Goal
+Career Goal - Smart Career
 {% endblock %}
 
 {% block content %}
 
-<div class="card">
+<div class="career-goal-page">
 
-    <h1>🎯 My Career Goal</h1>
+    <div class="career-goal-card">
 
-    <p>
-        Define your career goal and track your target.
-    </p>
+        <div class="goal-header">
+            <div class="goal-icon">🎯</div>
 
-    <form method="POST">
+            <div>
+                <h1>My Career Goal</h1>
+                <p>
+                    Define your career goal and create a clear path
+                    toward your dream career.
+                </p>
+            </div>
+        </div>
 
-        {% csrf_token %}
+        <div class="goal-info">
+            <div class="info-item">
+                <span>🚀</span>
+                <div>
+                    <strong>Set Your Target</strong>
+                    <small>Choose the career you want to pursue.</small>
+                </div>
+            </div>
 
-        {{ form.as_p }}
+            <div class="info-item">
+                <span>📈</span>
+                <div>
+                    <strong>Track Your Progress</strong>
+                    <small>Monitor your career journey from your dashboard.</small>
+                </div>
+            </div>
+        </div>
 
-        <button type="submit">
-            Save Career Goal
-        </button>
+        <form method="POST" id="careerGoalForm">
 
-    </form>
+            {% csrf_token %}
 
-    <br>
+            <div class="form-section">
+                <h2>Career Information</h2>
 
-    <a href="{% url 'dashboard' %}">
-        Back to Dashboard
-    </a>
+                <div class="form-fields">
+                    {{ form.as_p }}
+                </div>
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit" class="save-btn" id="saveGoalBtn">
+                    <span>💾</span>
+                    Save Career Goal
+                </button>
+
+                <a href="{% url 'dashboard' %}" class="back-btn">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </form>
+
+        <div class="goal-tip">
+            <span>💡</span>
+            <p>
+                <strong>Tip:</strong>
+                Choose a career goal that matches your skills,
+                interests and long-term plans.
+            </p>
+        </div>
+
+    </div>
 
 </div>
 
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/career_goal.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/career_goal.js' %}"></script>
 {% endblock %}

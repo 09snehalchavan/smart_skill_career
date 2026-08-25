@@ -764,3 +764,110 @@
     }
 
 }
+
+/* Page Navigation */
+
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    padding-bottom: 20px;
+}
+
+.back-dashboard-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 22px;
+
+    background: #f3f4f6;
+    color: #333;
+
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.back-dashboard-btn:hover {
+    background: #e8e9ed;
+    transform: translateY(-2px);
+}
+
+.career-action {
+    padding-top: 18px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+.view-gap-btn {
+    display: inline-block;
+
+    padding: 10px 17px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.view-gap-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+@media (max-width: 600px) {
+
+    .recommendations-container {
+        padding: 20px 15px 40px;
+    }
+
+    .recommendations-header {
+        padding: 22px;
+
+        align-items: flex-start;
+    }
+
+    .recommendations-header h1 {
+        font-size: 24px;
+    }
+
+    .header-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 23px;
+    }
+
+    .career-card {
+        padding: 22px;
+    }
+
+    .career-info {
+        grid-template-columns: 1fr;
+    }
+
+    .view-gap-btn {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        text-align: center;
+    }
+
+}
