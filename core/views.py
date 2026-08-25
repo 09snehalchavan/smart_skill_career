@@ -430,3 +430,68 @@ def skill_gap_view(request):
         'skills/skill_gap.html',
         context
     )
+
+
+@login_required
+def career_recommendation_view(request):
+
+    user_skills = UserSkill.objects.filter(
+        user=request.user
+    ).select_related('skill')
+
+    user_skill_names = {
+        user_skill.skill.name.strip().lower()
+        for user_skill in user_skills
+    }
+
+    careers = Career.objects.filter(
+        is_active=True
+    )
+
+    recommendations = []
+
+    for career in careers:
+
+        required_skills = CareerSkill.objects.filter(
+            career=career
+        ).select_related('skill')
+
+        total_required = required_skills.count()
+        total_matched = 0
+
+        for required_skill in required_skills:
+
+            skill_name = required_skill.skill.name.strip().lower()
+
+            if skill_name in user_skill_names:
+                total_matched += 1
+
+        if total_required > 0:
+            match_percentage = round(
+                (total_matched / total_required) * 100,
+                1
+            )
+        else:
+            match_percentage = 0
+
+        recommendations.append({
+            'career': career,
+            'total_required': total_required,
+            'total_matched': total_matched,
+            'match_percentage': match_percentage,
+        })
+
+    recommendations.sort(
+        key=lambda x: x['match_percentage'],
+        reverse=True
+    )
+
+    context = {
+        'recommendations': recommendations,
+    }
+
+    return render(
+        request,
+        'career/career_recommendation.html',
+        context
+    )

@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Career Recommendations - Smart Career
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/career_recommendations.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="recommendations-container">
+
+    <!-- Page Header -->
+
+    <div class="recommendations-header">
+
+        <div class="header-icon">
+            🎯
+        </div>
+
+        <div>
+
+            <span class="section-label">
+                CAREER DISCOVERY
+            </span>
+
+            <h1>
+                Career Recommendations
+            </h1>
+
+            <p>
+                Based on your current skills, here are the careers
+                that match your profile.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    {% if recommendations %}
+
+    <div class="recommendations-grid">
+
+        {% for item in recommendations %}
+
+        <div class="career-card">
+
+            <!-- Career Header -->
+
+            <div class="career-card-header">
+
+                <div class="career-icon">
+                    🚀
+                </div>
+
+                <div>
+
+                    <h2>
+                        {{ item.career.name }}
+                    </h2>
+
+                    <span class="career-badge">
+                        Recommended Career
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Description -->
+
+            <p class="career-description">
+                {{ item.career.description }}
+            </p>
+
+
+            <!-- Match -->
+
+            <div class="match-section">
+
+                <div class="match-header">
+
+                    <span>
+                        📊 Career Match
+                    </span>
+
+                    <strong>
+                        {{ item.match_percentage }}%
+                    </strong>
+
+                </div>
+
+
+                <div class="match-bar">
+
+                    <div class="match-fill" data-percentage="{{ item.match_percentage }}">
+                    </div>
+
+                </div>
+
+
+                <p class="matched-text">
+                    <strong>{{ item.total_matched }}</strong>
+                    matched skills out of
+                    <strong>{{ item.total_required }}</strong>
+                    required skills.
+                </p>
+
+            </div>
+
+
+            <!-- Career Information -->
+
+            <div class="career-info">
+
+                {% if item.career.average_salary %}
+
+                <div class="info-box">
+
+                    <span class="info-icon">
+                        💰
+                    </span>
+
+                    <div>
+
+                        <span>
+                            Average Salary
+                        </span>
+
+                        <strong>
+                            ₹{{ item.career.average_salary }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if item.career.demand_level %}
+
+                <div class="info-box">
+
+                    <span class="info-icon">
+                        📈
+                    </span>
+
+                    <div>
+
+                        <span>
+                            Market Demand
+                        </span>
+
+                        <strong>
+                            {{ item.career.demand_level }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Why Career -->
+
+            <div class="why-career">
+
+                <h3>
+                    💡 Why This Career?
+                </h3>
+
+                <p>
+                    Your current skills show a good foundation for
+                    <strong>{{ item.career.name }}</strong>.
+                    Continue improving your skill gaps to become
+                    more job-ready for this career.
+                </p>
+
+            </div>
+
+
+            <!-- Action -->
+
+            <div class="career-action">
+
+                <a href="{% url 'skill_gap' %}" class="view-gap-btn">
+                    📊 View Skill Gap Analysis →
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+    <!-- Empty State -->
+
+    <div class="empty-recommendations">
+
+        <div class="empty-icon">
+            🎯
+        </div>
+
+        <h2>
+            No Career Recommendations Available
+        </h2>
+
+        <p>
+            Please add your skills to get personalized
+            career recommendations.
+        </p>
+
+        <a href="{% url 'my_skills' %}" class="add-skills-btn">
+            💡 Add My Skills
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/career_recommendations.js' %}"></script>
+{% endblock %}

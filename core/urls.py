@@ -2,7 +2,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 from .import views
 from .views import (
-    root_page, register_view,dashboard_view, profile_view, my_skills_view, add_skill_view,edit_skill_view, delete_skill_view, career_goal_view, skill_gap_view,
+    root_page, register_view,dashboard_view, profile_view, my_skills_view, add_skill_view,edit_skill_view, delete_skill_view, career_goal_view, skill_gap_view, career_recommendation_view,
 )
 
 urlpatterns = [
@@ -81,6 +81,12 @@ urlpatterns = [
     'skill-gap/',
     views.skill_gap_view,
     name='skill_gap'
+    ),
+
+    path(
+    'career-recommendation/',
+    views.career_recommendation_view,
+    name='career_recommendation'
     ),
 ]
 

@@ -1,142 +1,389 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Skill Gap Analysis - Smart Career
 {% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/skill_gap.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="card">
+<div class="skill-gap-container">
 
-    <h1>📊 Skill Gap Analysis</h1>
+    <!-- Header -->
+
+    <div class="skill-gap-header">
+
+        <div class="header-icon">
+            📊
+        </div>
+
+        <div>
+
+            <span class="section-label">
+                CAREER ANALYSIS
+            </span>
+
+            <h1>
+                Skill Gap Analysis
+            </h1>
+
+            <p>
+                Understand your current skills and identify
+                what you need to improve for your target career.
+            </p>
+
+        </div>
+
+    </div>
+
 
     {% if career %}
 
-    <h2>{{ career.name }}</h2>
+    <!-- Career -->
 
-    <hr>
+    <div class="career-title-card">
 
-    <h3>📈 Skill Match</h3>
+        <span>
+            TARGET CAREER
+        </span>
 
-    <p>
-        <strong>{{ total_matched }}</strong>
-        out of
-        <strong>{{ total_required }}</strong>
-        required skills matched.
-    </p>
+        <h2>
+            🎯 {{ career.name }}
+        </h2>
 
-    <h2>{{ match_percentage }}%</h2>
+    </div>
 
-    <hr>
 
-    <h3>✅ Your Matching Skills</h3>
+    <!-- Match Overview -->
 
-    {% if matched_skills %}
+    <div class="match-overview">
 
-    <ul>
-        {% for skill in matched_skills %}
-        <li>
-            {{ skill.skill.name }}
-            — {{ skill.importance }}
-        </li>
-        {% endfor %}
-    </ul>
+        <div class="match-score">
 
-    {% else %}
+            <span>
+                Overall Skill Match
+            </span>
 
-    <p>No matching skills found yet.</p>
+            <strong>
+                {{ match_percentage }}%
+            </strong>
 
-    {% endif %}
+        </div>
 
-    <hr>
 
-    <h3>⚠️ Skills You Need to Improve</h3>
+        <div class="match-info">
 
-    {% if missing_skills %}
+            <p>
+                <strong>{{ total_matched }}</strong>
+                out of
+                <strong>{{ total_required }}</strong>
+                required skills matched.
+            </p>
 
-    <ul>
-        {% for skill in missing_skills %}
-        <li>
-            {{ skill.skill.name }}
-            — {{ skill.importance }}
-        </li>
-        {% endfor %}
-    </ul>
+            <div class="main-progress">
 
-    {% else %}
+                <div class="main-progress-fill" data-percentage="{{ match_percentage }}">
+                </div>
 
-    <p>🎉 Great! You have all required skills.</p>
+            </div>
 
-    {% endif %}
+        </div>
 
-    <hr>
+    </div>
 
-    <h3>📚 Recommended Learning</h3>
 
-    {% if recommended_courses %}
+    <!-- Skills Grid -->
 
-    {% for course in recommended_courses %}
+    <div class="skills-analysis-grid">
 
-    <div class="card">
+        <!-- Matching Skills -->
 
-        <h3>📖 {{ course.name }}</h3>
+        <div class="analysis-card matched-card">
 
-        <p>
-            <strong>Skill:</strong>
-            {{ course.skill.name }}
-        </p>
+            <div class="analysis-header">
 
-        <p>
-            <strong>Platform:</strong>
-            {{ course.platform }}
-        </p>
+                <div class="analysis-icon">
+                    ✅
+                </div>
 
-        <p>
-            <strong>Level:</strong>
-            {{ course.get_level_display }}
-        </p>
+                <div>
 
-        {% if course.duration %}
-        <p>
-            <strong>Duration:</strong>
-            {{ course.duration }}
-        </p>
-        {% endif %}
+                    <h2>
+                        Your Matching Skills
+                    </h2>
 
-        {% if course.description %}
-        <p>
-            {{ course.description }}
-        </p>
-        {% endif %}
+                    <span>
+                        Skills you already have
+                    </span>
 
-        {% if course.course_url %}
-        <a href="{{ course.course_url }}" target="_blank">
-            <button type="button">
-                Start Learning →
-            </button>
-        </a>
+                </div>
+
+            </div>
+
+
+            {% if matched_skills %}
+
+            <div class="skill-list">
+
+                {% for skill in matched_skills %}
+
+                <div class="skill-item">
+
+                    <div>
+                        <strong>
+                            {{ skill.skill.name }}
+                        </strong>
+                    </div>
+
+                    <span class="importance-badge">
+                        {{ skill.importance }}
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="empty-skill-message">
+                <span>ℹ️</span>
+                <p>
+                    No matching skills found yet.
+                </p>
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Missing Skills -->
+
+        <div class="analysis-card missing-card">
+
+            <div class="analysis-header">
+
+                <div class="analysis-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Skills to Improve
+                    </h2>
+
+                    <span>
+                        Skills you need to develop
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            {% if missing_skills %}
+
+            <div class="skill-list">
+
+                {% for skill in missing_skills %}
+
+                <div class="skill-item">
+
+                    <div>
+                        <strong>
+                            {{ skill.skill.name }}
+                        </strong>
+                    </div>
+
+                    <span class="importance-badge">
+                        {{ skill.importance }}
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="success-message">
+                🎉
+                <p>
+                    Great! You have all required skills.
+                </p>
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Learning Recommendations -->
+
+    <div class="learning-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                LEARNING PLAN
+            </span>
+
+            <h2>
+                📚 Recommended Learning
+            </h2>
+
+            <p>
+                Courses that can help you improve your missing skills.
+            </p>
+
+        </div>
+
+
+        {% if recommended_courses %}
+
+        <div class="courses-grid">
+
+            {% for course in recommended_courses %}
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    📖
+                </div>
+
+
+                <h3>
+                    {{ course.name }}
+                </h3>
+
+
+                <div class="course-skill">
+
+                    <span>
+                        Skill
+                    </span>
+
+                    <strong>
+                        {{ course.skill.name }}
+                    </strong>
+
+                </div>
+
+
+                <div class="course-details">
+
+                    <div>
+                        <span>Platform</span>
+                        <strong>{{ course.platform }}</strong>
+                    </div>
+
+                    <div>
+                        <span>Level</span>
+                        <strong>{{ course.get_level_display }}</strong>
+                    </div>
+
+                    {% if course.duration %}
+
+                    <div>
+                        <span>Duration</span>
+                        <strong>{{ course.duration }}</strong>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                {% if course.description %}
+
+                <p class="course-description">
+                    {{ course.description }}
+                </p>
+
+                {% endif %}
+
+
+                {% if course.course_url %}
+
+                <a href="{{ course.course_url }}" target="_blank" rel="noopener noreferrer" class="learning-btn">
+
+                    Start Learning →
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="no-courses">
+
+            <div>
+                📚
+            </div>
+
+            <h3>
+                No Learning Recommendations Yet
+            </h3>
+
+            <p>
+                No learning recommendations are available
+                for your missing skills yet.
+            </p>
+
+        </div>
+
         {% endif %}
 
     </div>
 
-    {% endfor %}
 
     {% else %}
 
-    <p>
-        No learning recommendations available for your missing skills yet.
-    </p>
+    <!-- Error State -->
 
-    {% endif %}
+    <div class="error-card">
 
-    {% else %}
+        <div class="error-icon">
+            ⚠️
+        </div>
 
-    <p>
-        {{ error }}
-    </p>
+        <h2>
+            Skill Gap Analysis Unavailable
+        </h2>
+
+        <p>
+            {{ error }}
+        </p>
+
+        <a href="{% url 'my_skills' %}" class="back-btn">
+            💡 Manage My Skills
+        </a>
+
+    </div>
 
     {% endif %}
 
 </div>
 
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/skill_gap.js' %}"></script>
 {% endblock %}
