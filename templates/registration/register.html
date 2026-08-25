@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Register - Smart Career
 {% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+{% endblock %}
+
 
 {% block content %}
 
@@ -11,48 +20,85 @@ Register - Smart Career
     <div class="register-card">
 
         <div class="register-header">
-            <div class="register-icon">🚀</div>
+
+            <div class="register-icon">
+                🚀
+            </div>
 
             <h1>Create Your Account</h1>
 
             <p>
                 Start building your skills and discover your ideal career.
             </p>
+
         </div>
 
-        <form method="POST" class="register-form">
+
+        <form method="POST" class="register-form" id="registerForm">
 
             {% csrf_token %}
 
+
             {% if form.errors %}
+
             <div class="form-error">
-                <strong>⚠️ Please fix the following errors:</strong>
+
+                <strong>
+                    ⚠️ Please fix the following errors:
+                </strong>
+
                 <div class="error-content">
                     {{ form.errors }}
                 </div>
+
             </div>
+
             {% endif %}
 
+
             <div class="form-fields">
+
                 {{ form.as_p }}
+
             </div>
 
-            <button type="submit" class="register-btn">
-                <span>Create Account</span>
-                <span class="arrow">→</span>
+
+            <button type="submit" class="register-btn" id="registerBtn">
+
+                <span>
+                    Create Account
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+
             </button>
 
         </form>
 
+
         <div class="login-link">
-            <span>Already have an account?</span>
+
+            <span>
+                Already have an account?
+            </span>
+
             <a href="{% url 'login' %}">
                 Login
             </a>
+
         </div>
 
     </div>
 
 </div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="{% static 'js/register.js' %}"></script>
 
 {% endblock %}

@@ -1,32 +1,77 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-Edit Skill
+Edit Skill - Smart Career
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/edit_skill.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<div class="card">
+<div class="edit-skill-container">
 
-    <h1>Edit Skill ✏️</h1>
+    <div class="edit-skill-card">
 
-    <form method="POST">
+        <!-- Header -->
 
-        {% csrf_token %}
+        <div class="edit-skill-header">
 
-        {{ form.as_p }}
+            <div class="edit-skill-icon">
+                ✏️
+            </div>
 
-        <button type="submit">
-            Update Skill
-        </button>
+            <div>
 
-    </form>
+                <span class="edit-section-label">
+                    SKILL MANAGEMENT
+                </span>
 
-    <br>
+                <h1>
+                    Edit Skill
+                </h1>
 
-    <a href="{% url 'my_skills' %}">
-        Back to My Skills
-    </a>
+                <p>
+                    Update your skill information and experience.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Form -->
+
+        <form method="POST" class="edit-skill-form">
+
+            {% csrf_token %}
+
+            <div class="edit-form-fields">
+
+                {{ form.as_p }}
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="edit-form-actions">
+
+                <a href="{% url 'my_skills' %}" class="edit-cancel-btn">
+                    Cancel
+                </a>
+
+                <button type="submit" class="update-skill-btn">
+                    💾 Update Skill
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
 

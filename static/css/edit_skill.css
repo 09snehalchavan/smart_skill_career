@@ -1,0 +1,279 @@
+/* =========================================
+   EDIT SKILL PAGE
+========================================= */
+
+.edit-skill-container {
+    width: 100%;
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    padding: 35px 20px 60px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.edit-skill-card {
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    padding: 32px;
+
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.edit-skill-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+.edit-skill-icon {
+    width: 55px;
+    height: 55px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #eff6ff;
+
+    border-radius: 12px;
+
+    font-size: 27px;
+}
+
+
+.edit-section-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.edit-skill-header h1 {
+    margin: 0 0 6px;
+
+    color: #1e293b;
+
+    font-size: 26px;
+}
+
+
+.edit-skill-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.edit-form-fields p {
+    margin: 0 0 20px;
+}
+
+
+.edit-form-fields label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.edit-form-fields input,
+.edit-form-fields select,
+.edit-form-fields textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+
+.edit-form-fields input:focus,
+.edit-form-fields select:focus,
+.edit-form-fields textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.edit-form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-top: 22px;
+
+    margin-top: 10px;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+
+.edit-cancel-btn,
+.update-skill-btn {
+    padding: 11px 20px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.edit-cancel-btn {
+    background: #f8fafc;
+
+    color: #475569;
+
+    border: 1px solid #cbd5e1;
+}
+
+
+.edit-cancel-btn:hover {
+    background: #f1f5f9;
+}
+
+
+.update-skill-btn {
+    background: #2563eb;
+
+    color: #ffffff;
+
+    border: none;
+
+    transition: 0.2s ease;
+}
+
+
+.update-skill-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .edit-skill-container {
+        padding: 20px 15px 40px;
+    }
+
+    .edit-skill-card {
+        padding: 22px 18px;
+    }
+
+    .edit-skill-header {
+        align-items: flex-start;
+    }
+
+    .edit-skill-header h1 {
+        font-size: 23px;
+    }
+
+    .edit-skill-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 23px;
+    }
+
+    .edit-form-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .edit-cancel-btn,
+    .update-skill-btn {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        text-align: center;
+    }
+
+}
