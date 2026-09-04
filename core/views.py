@@ -19,20 +19,23 @@ def root_page(request):
         'home.html'
     )
 
-def register_view(request):
 
-    # if request.user.is_authenticated:
-    #     return redirect('dashboard')
+def register_view(request):
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
 
         if form.is_valid():
+
             user = form.save()
 
             Profile.objects.create(
                 user=user,
-                full_name=user.username
+                full_name=user.username,
+                phone='Fill Data',
+                education='Fill Data',
+                college='Fill Data',
+                location='Fill Data',
             )
 
             login(request, user)
@@ -52,6 +55,7 @@ def register_view(request):
         'registration/register.html',
         {'form': form}
     )
+
 
 
 @login_required
