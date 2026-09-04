@@ -10,7 +10,14 @@ from .forms import RegisterForm, ProfileForm, UserSkillForm, CareerGoalForm
 from .models import Profile, UserSkill, CareerGoal, Career, CareerSkill, Course
 
 def root_page(request):
-    return HttpResponse("Welcome Page")
+
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    return render(
+        request,
+        'home.html'
+    )
 
 def register_view(request):
 

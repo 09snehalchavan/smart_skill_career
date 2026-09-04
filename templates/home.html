@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Smart Career - Build Your Career
+{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="home-page">
+
+    <!-- Hero Section -->
+
+    <section class="hero-section">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                🚀 Smart Career Management Platform
+            </span>
+
+            <h1>
+                Discover Your Skills.
+                <br>
+                <span>Build Your Career.</span>
+            </h1>
+
+            <p>
+                Smart Career helps you understand your skills,
+                identify skill gaps and discover career opportunities
+                that match your abilities.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{% url 'register' %}" class="primary-btn">
+                    Get Started →
+                </a>
+
+                <a href="{% url 'login' %}" class="secondary-btn">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="hero-card-icon">
+                🎯
+            </div>
+
+            <h3>
+                Your Career Journey
+            </h3>
+
+            <p>
+                Skills → Assessment → Skill Gap → Career
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features Section -->
+
+    <section class="features-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                FEATURES
+            </span>
+
+            <h2>
+                Everything You Need
+            </h2>
+
+            <p>
+                Build your career with a clear and personalized path.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💡
+                </div>
+
+                <h3>
+                    Skill Management
+                </h3>
+
+                <p>
+                    Add and manage your technical and professional skills.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Skill Gap Analysis
+                </h3>
+
+                <p>
+                    Find the skills you need to improve for your target career.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Career Recommendation
+                </h3>
+
+                <p>
+                    Discover careers that match your current skills.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Learning Resources
+                </h3>
+
+                <p>
+                    Find useful resources to improve your missing skills.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- How It Works -->
+
+    <section class="how-section">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                HOW IT WORKS
+            </span>
+
+            <h2>
+                Start Your Career Journey
+            </h2>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Create Account
+                </h3>
+
+                <p>
+                    Register and create your Smart Career account.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Add Your Skills
+                </h3>
+
+                <p>
+                    Tell us about your current technical skills.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Set Career Goal
+                </h3>
+
+                <p>
+                    Select the career you want to build towards.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Analyze & Improve
+                </h3>
+
+                <p>
+                    Check your skill gap and improve your career readiness.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Final CTA -->
+
+    <section class="cta-section">
+
+        <h2>
+            Ready to Build Your Career?
+        </h2>
+
+        <p>
+            Start your Smart Career journey today.
+        </p>
+
+        <a href="{% url 'register' %}" class="primary-btn">
+            Create Your Account →
+        </a>
+
+    </section>
+
+</div>
+
+{% endblock %}
