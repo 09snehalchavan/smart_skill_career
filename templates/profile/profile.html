@@ -15,49 +15,167 @@ My Profile - Smart Career
 
     <div class="profile-card">
 
-        <!-- Profile Photo -->
+        <!-- ================= PROFILE HEADER ================= -->
+
         <div class="profile-photo-section">
 
             {% if profile.profile_photo %}
+
             <img src="{{ profile.profile_photo.url }}" alt="Profile Photo" class="profile-photo">
+
             {% else %}
+
             <div class="profile-photo-placeholder">
                 👤
             </div>
+
             {% endif %}
 
             <h1>My Profile</h1>
 
             <p>
+                {% if edit_mode %}
                 Update your personal and educational information.
+                {% else %}
+                View your personal and educational information.
+                {% endif %}
             </p>
 
         </div>
 
 
-        <!-- Profile Form -->
+        <!-- ================= VIEW PROFILE ================= -->
+
+        {% if not edit_mode %}
+
+        <div class="profile-details">
+
+            <div class="profile-field">
+
+                <strong>Full Name</strong>
+
+                <span>
+                    {{ profile.full_name }}
+                </span>
+
+            </div>
+
+            <br>
+            <div class="profile-field">
+
+                <strong>Phone</strong>
+
+                <span>
+                    {{ profile.phone }}
+                </span>
+
+            </div>
+
+            <br>
+            <div class="profile-field">
+
+                <strong>Education</strong>
+
+                <span>
+                    {{ profile.education }}
+                </span>
+
+            </div>
+
+            <br>
+            <div class="profile-field">
+
+                <strong>College</strong>
+
+                <span>
+                    {{ profile.college }}
+                </span>
+
+            </div>
+
+            <br>
+            <div class="profile-field">
+
+                <strong>Location</strong>
+
+                <span>
+                    {{ profile.location }}
+                </span>
+
+            </div>
+
+            <br>
+            <div class="profile-field">
+
+                <strong>Bio</strong>
+
+                <span>
+                    {% if profile.bio %}
+                    {{ profile.bio }}
+                    {% else %}
+                    Not provided
+                    {% endif %}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Edit Button -->
+
+        <br><br>
+
+        <div class="profile-actions">
+
+            <a href="?edit=true" class="profile-btn edit-profile-btn">
+                ✏️ Edit Profile
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ================= EDIT PROFILE ================= -->
+
+        {% if edit_mode %}
+
         <form method="POST" enctype="multipart/form-data" class="profile-form" id="profileForm">
 
             {% csrf_token %}
 
             <div class="form-fields">
+
                 {{ form.as_p }}
+
             </div>
 
 
-            <button type="submit" class="profile-btn" id="saveProfileBtn">
+            <div class="profile-actions">
 
-                <span class="btn-text">
-                    💾 Save Profile
-                </span>
+                <button type="submit" class="profile-btn" id="saveProfileBtn">
 
-                <span class="btn-loader">
-                    Saving...
-                </span>
+                    <span class="btn-text">
+                        💾 Save Profile
+                    </span>
 
-            </button>
+                    <span class="btn-loader">
+                        Saving...
+                    </span>
+
+                </button>
+
+
+                <a href="{% url 'profile' %}" class="profile-cancel-btn">
+                    Cancel
+                </a>
+
+            </div>
 
         </form>
+
+        {% endif %}
 
     </div>
 
@@ -67,5 +185,7 @@ My Profile - Smart Career
 
 
 {% block extra_js %}
+
 <script src="{% static 'js/profile.js' %}"></script>
+
 {% endblock %}

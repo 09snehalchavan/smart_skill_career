@@ -150,6 +150,7 @@ def profile_view(request):
         user=request.user
     )
 
+    # Edit Profile
     if request.method == 'POST':
 
         form = ProfileForm(
@@ -169,11 +170,14 @@ def profile_view(request):
 
             return redirect('profile')
 
+    # View Profile / Edit Profile
     else:
 
         form = ProfileForm(
             instance=profile
         )
+
+    edit_mode = request.GET.get('edit') == 'true'
 
     return render(
         request,
@@ -181,6 +185,7 @@ def profile_view(request):
         {
             'form': form,
             'profile': profile,
+            'edit_mode': edit_mode,
         }
     )
 
