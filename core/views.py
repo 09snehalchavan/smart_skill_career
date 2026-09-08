@@ -582,6 +582,68 @@ def assessment_questions_view(request, assessment_id):
     if not assessment_questions.exists():
         return redirect('my_skills')
 
+
+    # Submit Assessment
+    if request.method == 'POST':
+
+        score = 0
+
+        for item in assessment_questions:
+
+            selected_answer = request.POST.get(
+                f'question_{item.id}'
+            )
+
+            item.selected_answer = selected_answer
+
+            if selected_answer == item.question.correct_answer:
+                item.is_correct = True
+                score += 1
+            else:
+                item.is_correct = False
+
+            item.save()
+
+
+        # Score
+        total_questions = assessment_questions.count()
+
+        percentage = (
+            (score / total_questions) * 100
+        )
+
+
+        # Determine Level
+        if percentage >= 80:
+            level = 'Advanced'
+
+        elif percentage >= 50:
+            level = 'Intermediate'
+
+        else:
+            level = 'Beginner'
+
+
+        # Update Assessment
+        assessment.score = score
+        assessment.total_questions = total_questions
+        assessment.percentage = percentage
+        assessment.level = level
+
+        from django.utils import timezone
+
+        assessment.completed_at = timezone.now()
+
+        assessment.save()
+
+
+        # Next step → Result page
+        return redirect(
+            'assessment_result',
+            assessment_id=assessment.id
+        )
+
+
     return render(
         request,
         'assessment/assessment_questions.html',

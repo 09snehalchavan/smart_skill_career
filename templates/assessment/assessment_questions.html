@@ -7,84 +7,229 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/assessment_questions.css' %}">
+
+
 <div class="assessment-container">
+
+    <!-- =========================================
+         ASSESSMENT HEADER
+    ========================================== -->
 
     <div class="assessment-header">
 
-        <span class="section-label">
-            SKILL ASSESSMENT
-        </span>
+        <div class="assessment-icon">
+            📝
+        </div>
 
-        <h1>
-            {{ assessment.skill.name }} Assessment
-        </h1>
+        <div class="assessment-header-content">
 
-        <p>
-            Test your knowledge and discover your skill level.
-        </p>
+            <span class="section-label">
+                SKILL ASSESSMENT
+            </span>
+
+            <h1>
+                {{ assessment.skill.name }} Assessment
+            </h1>
+
+            <p>
+                Test your knowledge and discover your skill level.
+            </p>
+
+        </div>
 
     </div>
 
 
-    <form method="POST">
+    <!-- =========================================
+         PROGRESS SECTION
+    ========================================== -->
+
+    <div class="progress-section">
+
+        <div class="progress-info">
+
+            <span>
+                Assessment Progress
+            </span>
+
+            <span id="progressText">
+                0 / {{ assessment_questions|length }}
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div class="progress-fill" id="progressFill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ASSESSMENT FORM
+    ========================================== -->
+
+    <form method="POST" id="assessmentForm">
 
         {% csrf_token %}
 
+
         {% for item in assessment_questions %}
+
+
+        <!-- =====================================
+             QUESTION CARD
+        ====================================== -->
 
         <div class="question-card">
 
-            <div class="question-number">
-                Question {{ forloop.counter }}
+
+            <!-- Question Header -->
+
+            <div class="question-top">
+
+                <span class="question-number">
+                    Question {{ forloop.counter }}
+                </span>
+
+
+                <span class="answered-status">
+                    Not answered
+                </span>
+
             </div>
 
-            <h3>
+
+            <!-- Question -->
+
+            <h3 class="question-text">
+
                 {{ item.question.question_text }}
+
             </h3>
 
 
+            <!-- Options -->
+
             <div class="options">
 
-                <label>
+
+                <!-- Option A -->
+
+                <label class="option">
+
                     <input type="radio" name="question_{{ item.id }}" value="A">
-                    A. {{ item.question.option_a }}
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    <span class="option-text">
+                        {{ item.question.option_a }}
+                    </span>
+
                 </label>
 
 
-                <label>
+                <!-- Option B -->
+
+                <label class="option">
+
                     <input type="radio" name="question_{{ item.id }}" value="B">
-                    B. {{ item.question.option_b }}
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    <span class="option-text">
+                        {{ item.question.option_b }}
+                    </span>
+
                 </label>
 
 
-                <label>
+                <!-- Option C -->
+
+                <label class="option">
+
                     <input type="radio" name="question_{{ item.id }}" value="C">
-                    C. {{ item.question.option_c }}
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    <span class="option-text">
+                        {{ item.question.option_c }}
+                    </span>
+
                 </label>
 
 
-                <label>
+                <!-- Option D -->
+
+                <label class="option">
+
                     <input type="radio" name="question_{{ item.id }}" value="D">
-                    D. {{ item.question.option_d }}
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    <span class="option-text">
+                        {{ item.question.option_d }}
+                    </span>
+
                 </label>
+
 
             </div>
 
         </div>
+
 
         {% endfor %}
 
 
+        <!-- =====================================
+             SUBMIT SECTION
+        ====================================== -->
+
         <div class="assessment-actions">
 
-            <button type="submit" class="submit-assessment-btn">
-                Submit Assessment →
+
+            <div class="completion-message" id="completionMessage">
+
+                Please answer all questions before submitting.
+
+            </div>
+
+
+            <button type="submit" class="submit-assessment-btn" id="submitBtn">
+
+                <span>
+                    Submit Assessment
+                </span>
+
+                <span class="submit-arrow">
+                    →
+                </span>
+
             </button>
 
+
         </div>
+
 
     </form>
 
 </div>
+
+
+<script src="{% static 'js/assessment_questions.js' %}"></script>
 
 {% endblock %}

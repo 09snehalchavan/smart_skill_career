@@ -88,17 +88,18 @@ urlpatterns = [
     views.career_recommendation_view,
     name='career_recommendation'
     ),
+
+    # Assessment
+    path(
+        'assessment/start/<int:skill_id>/',
+        assessment_start_view,
+        name='assessment_start'
+    ),
+
+    path(
+        'assessment/<int:assessment_id>/questions/',
+        assessment_questions_view,
+        name='assessment_questions'
+    ),
 ]
 
-# Assessment
-path(
-    'assessment/start/<int:skill_id>/',
-    assessment_start_view,
-    name='assessment_start'
-),
-
-path(
-    'assessment/<int:assessment_id>/questions/',
-    assessment_questions_view,
-    name='assessment_questions'
-),

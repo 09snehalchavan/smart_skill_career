@@ -289,7 +289,8 @@
 }
 
 .edit-btn,
-.delete-btn {
+.delete-btn,
+.assessment-btn {
     flex: 1;
 
     padding: 9px 14px;
@@ -325,6 +326,16 @@
 
 .delete-btn:hover {
     background: #ffe4e6;
+}
+
+.assessment-btn {
+    background: #f0fdf4;
+
+    color: #16a34a;
+}
+
+.assessment-btn:hover {
+    background: #dcfce7;
 }
 
 

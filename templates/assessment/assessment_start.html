@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ skill.name }} Assessment - Smart Career
+{% endblock %}
+
+{% block content %}
+
+<div class="assessment-container">
+
+    <div class="assessment-header">
+
+        <span class="section-label">
+            SKILL ASSESSMENT
+        </span>
+
+        <h1>
+            {{ skill.name }} Assessment
+        </h1>
+
+        {% if error %}
+
+        <div class="error-message">
+            {{ error }}
+        </div>
+
+        <a href="{% url 'my_skills' %}">
+            ← Back to My Skills
+        </a>
+
+        {% else %}
+
+        <p>
+            Test your knowledge and evaluate your current skill level.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
