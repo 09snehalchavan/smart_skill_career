@@ -2,7 +2,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 from .import views
 from .views import (
-    root_page, register_view,dashboard_view, profile_view, my_skills_view, add_skill_view,edit_skill_view, delete_skill_view, career_goal_view, skill_gap_view, career_recommendation_view,
+    root_page, register_view,dashboard_view, profile_view, my_skills_view, add_skill_view,edit_skill_view, delete_skill_view, career_goal_view, skill_gap_view, career_recommendation_view, assessment_start_view, assessment_questions_view,
 )
 
 urlpatterns = [
@@ -90,4 +90,15 @@ urlpatterns = [
     ),
 ]
 
+# Assessment
+path(
+    'assessment/start/<int:skill_id>/',
+    assessment_start_view,
+    name='assessment_start'
+),
 
+path(
+    'assessment/<int:assessment_id>/questions/',
+    assessment_questions_view,
+    name='assessment_questions'
+),

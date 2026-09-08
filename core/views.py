@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import RegisterForm, ProfileForm, UserSkillForm, CareerGoalForm
-from .models import Profile, UserSkill, CareerGoal, Career, CareerSkill, Course
+from .models import Profile, UserSkill, CareerGoal, Career, CareerSkill, Course, Assessment, Question, AssessmentQuestion
 
 def root_page(request):
 
@@ -415,17 +415,16 @@ def skill_gap_view(request):
         else:
             missing_skills.append(required_skill)
 
-    # Recommended courses for missing skills
-    recommended_courses = []
+    # Recommended courses ONLY for missing skills
+    missing_skill_ids = [
+        missing_skill.skill.id
+        for missing_skill in missing_skills
+    ]
 
-    for missing_skill in missing_skills:
-
-        courses = Course.objects.filter(
-            skill=missing_skill.skill,
-            is_active=True
-        )
-
-        recommended_courses.extend(courses)
+    recommended_courses = Course.objects.filter(
+        skill_id__in=missing_skill_ids,
+        is_active=True
+    )
 
     # Skill match calculation
     total_required = required_skills.count()
@@ -520,4 +519,74 @@ def career_recommendation_view(request):
         request,
         'career/career_recommendation.html',
         context
+    )
+
+def assessment_start_view(request, skill_id):
+
+    user_skill = UserSkill.objects.filter(
+        user=request.user,
+        skill_id=skill_id
+    ).select_related('skill').first()
+
+    if not user_skill:
+        return redirect('my_skills')
+
+    skill = user_skill.skill
+
+    questions = Question.objects.filter(
+        skill=skill,
+        is_active=True
+    ).order_by('?')[:10]
+
+    if not questions.exists():
+        return render(
+            request,
+            'assessment/assessment_start.html',
+            {
+                'skill': skill,
+                'error': 'No assessment questions are available for this skill yet.'
+            }
+        )
+
+    assessment = Assessment.objects.create(
+        user=request.user,
+        skill=skill,
+        total_questions=questions.count()
+    )
+
+    for question in questions:
+        AssessmentQuestion.objects.create(
+            assessment=assessment,
+            question=question
+        )
+
+    return redirect(
+        'assessment_questions',
+        assessment_id=assessment.id
+    )
+
+def assessment_questions_view(request, assessment_id):
+
+    assessment = Assessment.objects.filter(
+        id=assessment_id,
+        user=request.user
+    ).first()
+
+    if not assessment:
+        return redirect('my_skills')
+
+    assessment_questions = AssessmentQuestion.objects.filter(
+        assessment=assessment
+    ).select_related('question')
+
+    if not assessment_questions.exists():
+        return redirect('my_skills')
+
+    return render(
+        request,
+        'assessment/assessment_questions.html',
+        {
+            'assessment': assessment,
+            'assessment_questions': assessment_questions,
+        }
     )

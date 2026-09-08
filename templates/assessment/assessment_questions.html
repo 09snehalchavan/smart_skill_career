@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ assessment.skill.name }} Assessment - Smart Career
+{% endblock %}
+
+{% block content %}
+
+<div class="assessment-container">
+
+    <div class="assessment-header">
+
+        <span class="section-label">
+            SKILL ASSESSMENT
+        </span>
+
+        <h1>
+            {{ assessment.skill.name }} Assessment
+        </h1>
+
+        <p>
+            Test your knowledge and discover your skill level.
+        </p>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {% for item in assessment_questions %}
+
+        <div class="question-card">
+
+            <div class="question-number">
+                Question {{ forloop.counter }}
+            </div>
+
+            <h3>
+                {{ item.question.question_text }}
+            </h3>
+
+
+            <div class="options">
+
+                <label>
+                    <input type="radio" name="question_{{ item.id }}" value="A">
+                    A. {{ item.question.option_a }}
+                </label>
+
+
+                <label>
+                    <input type="radio" name="question_{{ item.id }}" value="B">
+                    B. {{ item.question.option_b }}
+                </label>
+
+
+                <label>
+                    <input type="radio" name="question_{{ item.id }}" value="C">
+                    C. {{ item.question.option_c }}
+                </label>
+
+
+                <label>
+                    <input type="radio" name="question_{{ item.id }}" value="D">
+                    D. {{ item.question.option_d }}
+                </label>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+        <div class="assessment-actions">
+
+            <button type="submit" class="submit-assessment-btn">
+                Submit Assessment →
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
