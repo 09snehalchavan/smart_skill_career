@@ -61,8 +61,7 @@ def register_view(request):
 @login_required
 def dashboard_view(request):
 
-    profile = get_object_or_404(
-        Profile,
+    profile, created = Profile.objects.get_or_create(
         user=request.user
     )
 
@@ -364,10 +363,21 @@ def skill_gap_view(request):
     if not career_goal:
         return redirect('career_goal')
 
-    career = Career.objects.filter(
-        name=career_goal.target_role,
-        is_active=True
-    ).first()
+
+    # Career Recommendation मधून selected career आली आहे का ते check करा
+    career_id = request.GET.get('career_id')
+
+    if career_id:
+        career = Career.objects.filter(
+            id=career_id,
+            is_active=True
+        ).first()
+    else:
+        # Directly Skill Gap Analysis open केल्यास user's saved goal वापरा
+        career = Career.objects.filter(
+            name=career_goal.target_role,
+            is_active=True
+        ).first()
 
     if not career:
         return render(

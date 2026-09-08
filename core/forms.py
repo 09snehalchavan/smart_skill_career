@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Profile, UserSkill, CareerGoal
+from .models import Profile, UserSkill, CareerGoal, Career
 
 
 class UserSkillForm(forms.ModelForm):
@@ -63,8 +63,15 @@ class ProfileForm(forms.ModelForm):
 
 class CareerGoalForm(forms.ModelForm):
 
+    target_role = forms.ModelChoiceField(
+        queryset=Career.objects.filter(is_active=True),
+        empty_label="Select Career",
+        widget=forms.Select()
+    )
+
     class Meta:
         model = CareerGoal
+
         fields = [
             'target_role',
             'experience_level',
@@ -74,11 +81,6 @@ class CareerGoalForm(forms.ModelForm):
         ]
 
         widgets = {
-            'target_role': forms.TextInput(
-                attrs={
-                    'placeholder': 'e.g. Python Full Stack Developer'
-                }
-            ),
 
             'preferred_domain': forms.TextInput(
                 attrs={
