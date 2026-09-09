@@ -521,6 +521,8 @@ def career_recommendation_view(request):
         context
     )
 
+@login_required
+@login_required
 def assessment_start_view(request, skill_id):
 
     user_skill = UserSkill.objects.filter(
@@ -532,6 +534,28 @@ def assessment_start_view(request, skill_id):
         return redirect('my_skills')
 
     skill = user_skill.skill
+
+    # Completed attempts
+    completed_attempts = Assessment.objects.filter(
+        user=request.user,
+        skill=skill,
+        completed_at__isnull=False
+    ).order_by('-completed_at')
+
+    attempt_count = completed_attempts.count()
+
+    # Maximum 3 attempts completed
+    if attempt_count >= 3:
+
+        last_assessment = completed_attempts.first()
+
+        return redirect(
+            'assessment_result',
+            assessment_id=last_assessment.id
+        )
+
+    # Current attempt number
+    attempt_number = attempt_count + 1
 
     questions = Question.objects.filter(
         skill=skill,
@@ -555,6 +579,7 @@ def assessment_start_view(request, skill_id):
     )
 
     for question in questions:
+
         AssessmentQuestion.objects.create(
             assessment=assessment,
             question=question
@@ -565,6 +590,7 @@ def assessment_start_view(request, skill_id):
         assessment_id=assessment.id
     )
 
+@login_required
 def assessment_questions_view(request, assessment_id):
 
     assessment = Assessment.objects.filter(
@@ -583,7 +609,28 @@ def assessment_questions_view(request, assessment_id):
         return redirect('my_skills')
 
 
+    # ============================================================
+    # ASSESSMENT ATTEMPT INFORMATION
+    # ============================================================
+
+    previous_attempts = Assessment.objects.filter(
+        user=request.user,
+        skill=assessment.skill,
+        completed_at__isnull=False,
+        completed_at__lt=assessment.started_at
+    ).count()
+
+    attempt_number = previous_attempts + 1
+
+    max_attempts = 3
+
+    remaining_attempts = max_attempts - attempt_number
+
+
+    # ============================================================
     # Submit Assessment
+    # ============================================================
+
     if request.method == 'POST':
 
         score = 0
@@ -605,7 +652,10 @@ def assessment_questions_view(request, assessment_id):
             item.save()
 
 
+        # ========================================================
         # Score
+        # ========================================================
+
         total_questions = assessment_questions.count()
 
         percentage = (
@@ -613,7 +663,10 @@ def assessment_questions_view(request, assessment_id):
         )
 
 
+        # ========================================================
         # Determine Level
+        # ========================================================
+
         if percentage >= 80:
             level = 'Advanced'
 
@@ -624,7 +677,10 @@ def assessment_questions_view(request, assessment_id):
             level = 'Beginner'
 
 
+        # ========================================================
         # Update Assessment
+        # ========================================================
+
         assessment.score = score
         assessment.total_questions = total_questions
         assessment.percentage = percentage
@@ -637,12 +693,19 @@ def assessment_questions_view(request, assessment_id):
         assessment.save()
 
 
+        # ========================================================
         # Next step → Result page
+        # ========================================================
+
         return redirect(
             'assessment_result',
             assessment_id=assessment.id
         )
 
+
+    # ============================================================
+    # Assessment Questions Page
+    # ============================================================
 
     return render(
         request,
@@ -650,5 +713,57 @@ def assessment_questions_view(request, assessment_id):
         {
             'assessment': assessment,
             'assessment_questions': assessment_questions,
+
+            # Attempt information
+            'attempt_number': attempt_number,
+            'max_attempts': max_attempts,
+            'remaining_attempts': remaining_attempts,
+        }
+    )
+
+@login_required
+def assessment_result_view(request, assessment_id):
+
+    assessment = Assessment.objects.filter(
+        id=assessment_id,
+        user=request.user
+    ).first()
+
+    if not assessment:
+        return redirect('my_skills')
+
+
+    # ============================================================
+    # ATTEMPT INFORMATION
+    # ============================================================
+
+    previous_attempts = Assessment.objects.filter(
+        user=request.user,
+        skill=assessment.skill,
+        completed_at__isnull=False,
+        completed_at__lt=assessment.started_at
+    ).count()
+
+    attempt_number = previous_attempts + 1
+
+    max_attempts = 3
+
+
+    # ============================================================
+    # CHECK IF USER REACHED MAXIMUM ATTEMPTS
+    # ============================================================
+
+    limit_reached = request.GET.get('limit_reached') == '1'
+
+
+    return render(
+        request,
+        'assessment/assessment_result.html',
+        {
+            'assessment': assessment,
+
+            'attempt_number': attempt_number,
+            'max_attempts': max_attempts,
+            'limit_reached': limit_reached,
         }
     )

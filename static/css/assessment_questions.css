@@ -850,3 +850,70 @@
     }
 
 }
+
+/* =========================================
+   ATTEMPT BADGE
+========================================= */
+
+.attempt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 16px;
+    padding: 8px 14px;
+
+    background: #f4f6ff;
+    border: 1px solid #dfe3ff;
+    border-radius: 20px;
+
+    color: #4f46e5;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.attempt-icon {
+    font-size: 15px;
+}
+
+
+/* =========================================
+   SUBMISSION INFO
+========================================= */
+
+.submission-info {
+    margin-bottom: 18px;
+}
+
+.submission-attempt {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 15px 18px;
+
+    background: #f8f9ff;
+    border: 1px solid #e5e7f5;
+    border-radius: 12px;
+}
+
+.submission-icon {
+    font-size: 20px;
+}
+
+.submission-attempt strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #252b42;
+    font-size: 15px;
+}
+
+.submission-attempt p {
+    margin: 0;
+
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.5;
+}

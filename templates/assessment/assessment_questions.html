@@ -36,6 +36,18 @@
                 Test your knowledge and discover your skill level.
             </p>
 
+            <div class="attempt-badge">
+
+                <span class="attempt-icon">
+                    🔄
+                </span>
+
+                <span>
+                    Attempt {{ attempt_number }} of {{ max_attempts }}
+                </span>
+
+            </div>
+
         </div>
 
     </div>
@@ -201,6 +213,40 @@
 
         <div class="assessment-actions">
 
+            <div class="submission-info">
+
+                <div class="submission-attempt">
+
+                    <span class="submission-icon">
+                        🎯
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Attempt {{ attempt_number }} of {{ max_attempts }}
+                        </strong>
+
+                        {% if attempt_number < max_attempts %} <p>
+                            You have {{ remaining_attempts }}
+                            attempt{{ remaining_attempts|pluralize }}
+                            remaining after this assessment.
+                            </p>
+
+                            {% else %}
+
+                            <p>
+                                This is your final assessment attempt.
+                            </p>
+
+                            {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
 
             <div class="completion-message" id="completionMessage">
 
@@ -220,7 +266,6 @@
                 </span>
 
             </button>
-
 
         </div>
 

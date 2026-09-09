@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Assessment Result - Smart Career
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/assessment_result.css' %}">
+
+
+<div class="result-page">
+
+    <div class="result-container">
+
+
+        <!-- =====================================
+             SUCCESS HEADER
+        ====================================== -->
+
+        <div class="result-header">
+
+            <div class="result-icon">
+                ✓
+            </div>
+
+            <span class="result-label">
+                ASSESSMENT COMPLETED
+            </span>
+
+            <h1>
+                Assessment Result
+            </h1>
+
+            <p>
+                Great job! Here is your skill assessment result.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             LEVEL CARD
+        ====================================== -->
+
+        <div class="level-card">
+
+            <span class="card-label">
+                YOUR SKILL LEVEL
+            </span>
+
+            <h2>
+                {{ assessment.level }}
+            </h2>
+
+            <p>
+                Based on your assessment performance
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             SCORE CARDS
+        ====================================== -->
+
+        <div class="result-stats">
+
+
+            <!-- SCORE -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div class="stat-content">
+
+                    <span class="stat-label">
+                        SCORE
+                    </span>
+
+                    <strong>
+                        {{ assessment.score }}
+                        /
+                        {{ assessment.total_questions }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- PERCENTAGE -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon percentage-icon">
+                    %
+                </div>
+
+                <div class="stat-content">
+
+                    <span class="stat-label">
+                        PERCENTAGE
+                    </span>
+
+                    <strong>
+                        {{ assessment.percentage }}%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================
+             PERFORMANCE
+        ====================================== -->
+
+        <div class="performance-card">
+
+            <div class="performance-header">
+
+                <div>
+
+                    <span class="card-label">
+                        PERFORMANCE
+                    </span>
+
+                    <h3>
+                        Your Assessment Performance
+                    </h3>
+
+                </div>
+
+                <span class="percentage-value">
+                    {{ assessment.percentage }}%
+                </span>
+
+            </div>
+
+
+            <div class="performance-bar">
+
+                <div class="performance-fill" style="width: {{ assessment.percentage }}%;">
+                </div>
+
+            </div>
+
+
+            <p class="performance-text">
+                Your score reflects your current understanding
+                of this skill.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             ACTIONS
+        ====================================== -->
+
+        <div class="result-actions">
+
+            <a href="{% url 'my_skills' %}" class="secondary-btn">
+                ← My Skills
+            </a>
+
+
+            <a href="{% url 'dashboard' %}" class="primary-btn">
+                Go to Dashboard
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script src="{% static 'js/assessment_result.js' %}">
+</script>
+
+{% endblock %}
