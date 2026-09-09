@@ -1,43 +1,58 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 {{ skill.name }} Assessment - Smart Career
 {% endblock %}
 
 {% block content %}
 
-<div class="assessment-container">
+<link rel="stylesheet" href="{% static 'css/assessment_start.css' %}">
 
-    <div class="assessment-header">
 
-        <span class="section-label">
-            SKILL ASSESSMENT
-        </span>
+<div class="assessment-page">
 
-        <h1>
-            {{ skill.name }} Assessment
-        </h1>
+    <div class="assessment-container">
 
-        {% if error %}
+        <!-- Assessment Header -->
 
-        <div class="error-message">
-            {{ error }}
+        <div class="assessment-header">
+
+            <div class="assessment-badge">
+                SKILL ASSESSMENT
+            </div>
+
+            <h1>
+                {{ skill.name }} Assessment
+            </h1>
+
+
+            {% if error %}
+
+            <div class="assessment-error">
+                {{ error }}
+            </div>
+
+            <a href="{% url 'my_skills' %}" class="back-skills-btn">
+                ← Back to My Skills
+            </a>
+
+            {% else %}
+
+            <p class="assessment-description">
+                Test your knowledge and evaluate your current skill level.
+            </p>
+
+            {% endif %}
+
         </div>
-
-        <a href="{% url 'my_skills' %}">
-            ← Back to My Skills
-        </a>
-
-        {% else %}
-
-        <p>
-            Test your knowledge and evaluate your current skill level.
-        </p>
-
-        {% endif %}
 
     </div>
 
 </div>
+
+
+<script src="{% static 'js/assessment_start.js' %}"></script>
 
 {% endblock %}

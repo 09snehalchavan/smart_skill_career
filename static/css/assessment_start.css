@@ -1,0 +1,283 @@
+/* =========================================
+   ASSESSMENT QUESTIONS PAGE
+   Smart Skill & Career Platform
+========================================= */
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.assessment-page {
+    width: 100%;
+    min-height: calc(100vh - 100px);
+
+    box-sizing: border-box;
+
+    padding: 30px 20px 50px;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.assessment-container {
+    width: 100%;
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   HEADER CARD
+========================================= */
+
+.assessment-header {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+
+    text-align: left;
+}
+
+
+/* =========================================
+   BADGE
+========================================= */
+
+.assessment-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 7px 13px;
+
+    margin-bottom: 15px;
+
+    border-radius: 20px;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.assessment-header h1 {
+    margin: 0;
+
+    color: #1e293b;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.assessment-description {
+    margin: 10px 0 0;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.assessment-error {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 20px;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #dc2626;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   BACK TO MY SKILLS BUTTON
+========================================= */
+
+.back-skills-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 18px;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    background: #6366f1;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.back-skills-btn:hover {
+    background: #4f46e5;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 15px rgba(99, 102, 241, 0.25);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .assessment-page {
+        padding: 25px 15px 40px;
+    }
+
+
+    .assessment-header {
+        padding: 28px;
+    }
+
+
+    .assessment-header h1 {
+        font-size: 26px;
+    }
+
+
+    .assessment-description {
+        font-size: 14px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .assessment-page {
+        padding: 18px 12px 35px;
+    }
+
+
+    .assessment-header {
+        padding: 22px 18px;
+
+        border-radius: 15px;
+    }
+
+
+    .assessment-badge {
+        padding: 6px 10px;
+
+        margin-bottom: 12px;
+
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .assessment-header h1 {
+        font-size: 22px;
+    }
+
+
+    .assessment-description {
+        margin-top: 8px;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    .assessment-error {
+        margin-top: 16px;
+
+        padding: 12px;
+
+        font-size: 13px;
+    }
+
+
+    .back-skills-btn {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        margin-top: 15px;
+
+        padding: 12px;
+
+        font-size: 13px;
+    }
+
+}
